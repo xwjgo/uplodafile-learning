@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        title=title
+    body
+        div#upload 这里是上传图片和视频的表单
+            form(method="post" action="/upload" enctype="multipart/form-data")
+                input(type="file" class="upload" name="avatar")
+                input(type="submit" id="submit")
+        script(type="text/javascript").
+            const submitBtn = document.querySelector('#submit');
+            const form = document.querySelector('form');
+            const request = #{request};
+            submitBtn.onclick=function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                console.log(formData);
+                request.post('/upload', formData, function (err, httpResponse, body) {
+                    console.log(httpResponse);
+                })
+            };
