@@ -4,6 +4,7 @@
  *      前台使用ajax或者form来向服务器提交multipart/form-data类型的数据，其中可用html5提供的一个新的api，即FormData
  *      后台可以使用multer、busboy等npm包来对收到的数据进行处理
  * 2. pug中的data，可以在app.locals中指定，并且明白了在pug中写原生js的方法，以及在js使用传入data的的途径
+ * 3. pug中注意插值时候的转义问题
  */
 const express = require('express');
 const path = require('path');
@@ -18,7 +19,6 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-console.log(app.locals);
 app.locals.request = request;
 
 app.get('/', (req, res) => {
